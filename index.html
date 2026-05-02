@@ -1,334 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFS Gym — Client Intake Form</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --bg: #ffffff;
-            --text: #1f2937;
-            --border: #e5e7eb;
-            --section-bg: #f9fafb;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: #f3f4f6;
-            color: var(--text);
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        header {
-            text-align: center;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-
-        h1 { margin: 0; color: #111; font-size: 24px; }
-        .description { color: #6b7280; font-size: 14px; margin-top: 10px; }
-
-        .section {
-            margin-bottom: 40px;
-            padding: 20px;
-            background: var(--section-bg);
-            border-radius: 8px;
-        }
-
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: block;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 5px;
-        }
-
-        .question { margin-bottom: 25px; }
-        
-        label { display: block; font-weight: 600; margin-bottom: 5px; }
-        
-        .helper { font-size: 12px; color: #6b7280; margin-bottom: 10px; font-style: italic; }
-
-        input[type="text"], textarea, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .option-item {
-            background: white;
-            padding: 10px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .option-item input { margin-right: 10px; }
-
-        .btn-submit {
-            width: 100%;
-            padding: 18px;
-            background: #25d366;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-submit:hover { background: #128c7e; transform: translateY(-2px); }
-
-        @media (max-width: 600px) {
-            .options-grid { grid-template-columns: 1fr; }
-            .container { padding: 20px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AFS Gym — Client Intake Form</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #ffffff;
+    color: #111;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  header {
+    text-align: center;
+    border-bottom: 2px solid #111;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+  }
+  header h1 { font-size: 26px; margin-bottom: 8px; }
+  header p { color: #555; font-size: 15px; }
+  .section {
+    margin: 30px 0 15px;
+    padding: 10px 15px;
+    background: #f5f5f5;
+    border-left: 4px solid #111;
+    font-weight: bold;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .question {
+    margin-bottom: 22px;
+    padding: 15px;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+  }
+  .question label.q-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+  .helper {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  input[type="text"], input[type="tel"], textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  textarea { min-height: 80px; resize: vertical; }
+  .options label {
+    display: block;
+    padding: 6px 0;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .options input { margin-right: 8px; }
+  .other-input {
+    margin-top: 8px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .required { color: #d32f2f; }
+  button {
+    background: #111;
+    color: #fff;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: 0.3s;
+  }
+  button:hover { background: #25D366; }
+  footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #888;
+    font-size: 13px;
+  }
+</style>
 </head>
 <body>
-
 <div class="container">
-    <header>
-        <h1>AFS Gym — Tell Us About Your Brand 💪</h1>
-        <p class="description">Hey! Before we build your website, ads, and social media — fill this out so we can make everything perfectly YOU. Takes 5–7 minutes.</p>
-    </header>
+  <header>
+    <h1>AFS Gym — Tell Us About Your Brand 💪</h1>
+    <p>Hey! Before we build your website, ads, and social media — fill this out so we can make everything perfectly YOU. Takes 5–7 minutes.</p>
+  </header>
 
-    <form id="intakeForm">
-        <!-- SECTION 1 -->
-        <div class="section">
-            <span class="section-title">SECTION 1: BRAND & IDENTITY</span>
-            
-            <div class="question">
-                <label>Q1. What is the full official name of your gym? *</label>
-                <span class="helper">This goes on your website, ads, and all creatives — exact spelling matters!</span>
-                <input type="text" name="q1_gym_name" required>
-            </div>
+  <form id="afsForm">
 
-            <div class="question">
-                <label>Q2. Do you have an existing logo? *</label>
-                <div class="options-grid">
-                    <label class="option-item"><input type="radio" name="q2_logo" value="Yes, proper file" required> Yes, I have a proper logo file</label>
-                    <label class="option-item"><input type="radio" name="q2_logo" value="Needs improvement"> Yes, but it needs improvement</label>
-                    <label class="option-item"><input type="radio" name="q2_logo" value="Old banners only"> Only on old banners or boards</label>
-                    <label class="option-item"><input type="radio" name="q2_logo" value="No logo"> No logo at all</label>
-                </div>
-            </div>
+    <div class="section">Section 1: Brand & Identity</div>
 
-            <div class="question">
-                <label>Q3. What vibe do you want for the gym's brand? (Select all)</label>
-                <div class="options-grid">
-                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Hardcore"> 💪 Hardcore & Intense</label>
-                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Premium"> 👑 Premium & Luxurious</label>
-                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Friendly"> 🤝 Friendly & Community</label>
-                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Motivational"> 🔥 Motivational & Bold</label>
-                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Professional"> 💼 Professional & Clinical</label>
-                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Energetic"> ⚡ Energetic & Youthful</label>
-                </div>
-            </div>
+    <div class="question">
+      <label class="q-label">Q1. What is the full official name of your gym? <span class="required">*</span></label>
+      <div class="helper">This goes on your website, ads, and all creatives — exact spelling matters!</div>
+      <input type="text" name="q1" required>
+    </div>
 
-            <div class="question">
-                <label>Q4. Who is your target member?</label>
-                <div class="options-grid">
-                    <label class="option-item"><input type="checkbox" name="q4_target" value="Students"> Students (18–22)</label>
-                    <label class="option-item"><input type="checkbox" name="q4_target" value="Professionals"> Working professionals (25–40)</label>
-                    <label class="option-item"><input type="checkbox" name="q4_target" value="Bodybuilders"> Bodybuilders & serious athletes</label>
-                    <label class="option-item"><input type="checkbox" name="q4_target" value="Homemakers"> Homemakers & women fitness</label>
-                    <label class="option-item"><input type="checkbox" name="q4_target" value="Senior Citizens"> Senior citizens (50+)</label>
-                    <label class="option-item"><input type="checkbox" name="q4_target" value="Teenagers"> Teenagers (15–18)</label>
-                    <label class="option-item"><input type="checkbox" name="q4_target" value="Everyone"> Everyone welcome</label>
-                </div>
-            </div>
+    <div class="question">
+      <label class="q-label">Q2. Do you have an existing logo? <span class="required">*</span></label>
+      <div class="options">
+        <label><input type="radio" name="q2" value="Yes, I have a proper logo file (PNG/JPG)" required> Yes, I have a proper logo file (PNG/JPG)</label>
+        <label><input type="radio" name="q2" value="Yes, but it needs improvement"> Yes, but it needs improvement</label>
+        <label><input type="radio" name="q2" value="Only on old banners or boards"> Only on old banners or boards</label>
+        <label><input type="radio" name="q2" value="No logo at all"> No logo at all</label>
+      </div>
+    </div>
 
-            <div class="question">
-                <label>Q5. Which colors do you love or already use for AFS?</label>
-                <span class="helper">Pick colors that feel RIGHT for your brand</span>
-                <div class="options-grid">
-                    <label class="option-item"><input type="checkbox" name="q5_colors" value="Black"> ⬛ Jet Black</label>
-                    <label class="option-item"><input type="checkbox" name="q5_colors" value="Gray"> 🩶 Charcoal Gray</label>
-                    <label class="option-item"><input type="checkbox" name="q5_colors" value="White"> 🤍 Clean White</label>
-                    <label class="option-item"><input type="checkbox" name="q5_colors" value="Yellow"> 🟡 Gold / Yellow</label>
-                    <label class="option-item"><input type="checkbox" name="q5_colors" value="Royal Blue"> 🔵 Royal Blue</label>
-                    <label class="option-item"><input type="checkbox" name="q5_colors" value="Crimson Red"> 🔴 Crimson Red</label>
-                </div>
-            </div>
+    <div class="question">
+      <label class="q-label">Q3. What vibe do you want for the gym's brand?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q3" value="💪 Hardcore & Intense"> 💪 Hardcore & Intense</label>
+        <label><input type="checkbox" name="q3" value="👑 Premium & Luxurious"> 👑 Premium & Luxurious</label>
+        <label><input type="checkbox" name="q3" value="🤝 Friendly & Community"> 🤝 Friendly & Community</label>
+        <label><input type="checkbox" name="q3" value="🔥 Motivational & Bold"> 🔥 Motivational & Bold</label>
+        <label><input type="checkbox" name="q3" value="💼 Professional & Clinical"> 💼 Professional & Clinical</label>
+        <label><input type="checkbox" name="q3" value="⚡ Energetic & Youthful"> ⚡ Energetic & Youthful</label>
+        <input type="text" class="other-input" name="q3_other" placeholder="Other (please specify)">
+      </div>
+    </div>
 
-            <div class="question">
-                <label>Q6. Any colors you absolutely DO NOT want?</label>
-                <input type="text" name="q6_no_colors" placeholder="e.g. No pink, no pastels">
-            </div>
+    <div class="question">
+      <label class="q-label">Q4. Who is your target member?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q4" value="Students (18–22)"> Students (18–22)</label>
+        <label><input type="checkbox" name="q4" value="Working professionals (25–40)"> Working professionals (25–40)</label>
+        <label><input type="checkbox" name="q4" value="Bodybuilders & serious athletes"> Bodybuilders & serious athletes</label>
+        <label><input type="checkbox" name="q4" value="Homemakers & women fitness"> Homemakers & women fitness</label>
+        <label><input type="checkbox" name="q4" value="Senior citizens (50+)"> Senior citizens (50+)</label>
+        <label><input type="checkbox" name="q4" value="Teenagers (15–18)"> Teenagers (15–18)</label>
+        <label><input type="checkbox" name="q4" value="Everyone — all ages welcome"> Everyone — all ages welcome</label>
+        <input type="text" class="other-input" name="q4_other" placeholder="Other (please specify)">
+      </div>
+    </div>
 
-            <div class="question">
-                <label>Q7. Which competitor gyms do you want to look better than?</label>
-                <div class="options-grid">
-                    <label class="option-item"><input type="checkbox" name="q7_compete" value="Vikings"> Vikings Fitness</label>
-                    <label class="option-item"><input type="checkbox" name="q7_compete" value="Sandy's"> Sandy's Fitness</label>
-                    <label class="option-item"><input type="checkbox" name="q7_compete" value="Fitness Forge"> Fitness Forge</label>
-                    <label class="option-item"><input type="checkbox" name="q7_compete" value="All Local"> All local gyms in Pradhan Nagar</label>
-                </div>
-            </div>
-        </div>
+    <div class="question">
+      <label class="q-label">Q5. Which colors do you love or already use for AFS?</label>
+      <div class="helper">Pick colors that feel RIGHT for your brand</div>
+      <div class="options">
+        <label><input type="checkbox" name="q5" value="⬛ Jet Black"> ⬛ Jet Black</label>
+        <label><input type="checkbox" name="q5" value="🩶 Charcoal Gray"> 🩶 Charcoal Gray</label>
+        <label><input type="checkbox" name="q5" value="🤍 Clean White"> 🤍 Clean White</label>
+        <label><input type="checkbox" name="q5" value="🟡 Gold / Yellow"> 🟡 Gold / Yellow</label>
+        <label><input type="checkbox" name="q5" value="🔵 Royal Blue"> 🔵 Royal Blue</label>
+        <label><input type="checkbox" name="q5" value="🌊 Sky Blue"> 🌊 Sky Blue</label>
+        <label><input type="checkbox" name="q5" value="🟤 Dark Navy"> 🟤 Dark Navy</label>
+        <label><input type="checkbox" name="q5" value="🟢 Forest Green"> 🟢 Forest Green</label>
+        <label><input type="checkbox" name="q5" value="🔴 Crimson Red"> 🔴 Crimson Red</label>
+        <label><input type="checkbox" name="q5" value="🟠 Orange"> 🟠 Orange</label>
+        <label><input type="checkbox" name="q5" value="🟣 Purple / Violet"> 🟣 Purple / Violet</label>
+        <label><input type="checkbox" name="q5" value="🩷 Pink / Hot Pink"> 🩷 Pink / Hot Pink</label>
+        <label><input type="checkbox" name="q5" value="🥈 Silver / Metallic"> 🥈 Silver / Metallic</label>
+        <input type="text" class="other-input" name="q5_other" placeholder="Other (describe your color)">
+      </div>
+    </div>
 
-        <!-- SECTION 2 -->
-        <div class="section">
-            <span class="section-title">SECTION 2: TWO BRANCHES</span>
-            <div class="question">
-                <label>Q8. What are the full names and addresses of both branches? *</label>
-                <textarea name="q8_addresses" rows="3" required placeholder="Branch 1: [Address] | Branch 2: [Address]"></textarea>
-            </div>
-            <div class="question">
-                <label>Q9. Are the trainers/programs the same at both branches? *</label>
-                <select name="q9_consistency" required>
-                    <option value="">-- Select Option --</option>
-                    <option value="Same trainers and programs">Same trainers, same programs at both</option>
-                    <option value="Different trainers, same programs">Different trainers, but same programs</option>
-                    <option value="Completely different">Completely different at each branch</option>
-                </select>
-            </div>
-            <div class="question">
-                <label>Q11. Please share your contact number(s) *</label>
-                <input type="text" name="q11_contact" required>
-            </div>
-        </div>
+    <div class="question">
+      <label class="q-label">Q6. Any colors you absolutely DO NOT want?</label>
+      <div class="helper">E.g. "No pink, no pastels"</div>
+      <input type="text" name="q6">
+    </div>
 
-        <!-- SECTION 3 -->
-        <div class="section">
-            <span class="section-title">SECTION 3: WEBSITE</span>
-            <div class="question">
-                <label>Q12. Which services should appear on the website?</label>
-                <div class="options-grid">
-                    <label class="option-item"><input type="checkbox" name="q12_services" value="Weight Training"> Weight Training</label>
-                    <label class="option-item"><input type="checkbox" name="q12_services" value="Cardio"> Cardio Zone</label>
-                    <label class="option-item"><input type="checkbox" name="q12_services" value="PT"> Personal Training</label>
-                    <label class="option-item"><input type="checkbox" name="q12_services" value="Steam"> Steam Bath / Sauna</label>
-                </div>
-            </div>
-            <div class="question">
-                <label>Q13. Should membership prices be shown? *</label>
-                <select name="q13_prices" required>
-                    <option value="Show Publicly">Yes — show full pricing publicly</option>
-                    <option value="Range Only">Show price range only</option>
-                    <option value="No">No — keep it enquiry-based only</option>
-                </select>
-            </div>
-            <div class="question">
-                <label>Q16. Do you have photos or videos of the gym? *</label>
-                <select name="q16_media" required>
-                    <option value="Full Media">Yes — High quality photos & videos</option>
-                    <option value="Photos Only">Yes — Photos only</option>
-                    <option value="Need Shoot">No — We need a photoshoot</option>
-                </select>
-            </div>
-        </div>
+    <div class="question">
+      <label class="q-label">Q7. Which competitor gyms do you want to look better than?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q7" value="Vikings Fitness"> Vikings Fitness</label>
+        <label><input type="checkbox" name="q7" value="Sandy's Fitness"> Sandy's Fitness</label>
+        <label><input type="checkbox" name="q7" value="Fitness Forge"> Fitness Forge</label>
+        <label><input type="checkbox" name="q7" value="Iron Culture"> Iron Culture</label>
+        <label><input type="checkbox" name="q7" value="Royal Fitness"> Royal Fitness</label>
+        <label><input type="checkbox" name="q7" value="Health World"> Health World</label>
+        <label><input type="checkbox" name="q7" value="Hammer Gym"> Hammer Gym</label>
+        <label><input type="checkbox" name="q7" value="All local gyms in Pradhan Nagar"> All local gyms in Pradhan Nagar</label>
+        <input type="text" class="other-input" name="q7_other" placeholder="Other (please specify)">
+      </div>
+    </div>
 
-        <!-- SECTION 5 -->
-        <div class="section">
-            <span class="section-title">SECTION 5: META ADS</span>
-            <div class="question">
-                <label>Q23. Monthly Meta ads budget? *</label>
-                <select name="q23_budget" required>
-                    <option value="Under 2k">Under ₹2,000/month</option>
-                    <option value="2k-5k">₹2,000 – ₹5,000/month</option>
-                    <option value="5k-10k">₹5,000 – ₹10,000/month</option>
-                    <option value="10k+">Above ₹10,000/month</option>
-                </select>
-            </div>
-            <div class="question">
-                <label>Q24. Main goal of running Meta ads?</label>
-                <input type="text" name="q24_ads_goal" placeholder="e.g. Leads, Brand Awareness">
-            </div>
-        </div>
+    <div class="section">Section 2: Two Branches</div>
 
-        <!-- SECTION 6 -->
-        <div class="section">
-            <span class="section-title">SECTION 6: WORKING TOGETHER</span>
-            <div class="question">
-                <label>Q26. How do you want to approve posts? *</label>
-                <select name="q26_approval" required>
-                    <option value="WhatsApp">WhatsApp approval per post</option>
-                    <option value="Weekly">Weekly batch approval</option>
-                    <option value="Full Trust">Full trust - just post</option>
-                </select>
-            </div>
-            <div class="question">
-                <label>Q27. Anything else for Saummya? (Optional)</label>
-                <textarea name="q27_notes" rows="3"></textarea>
-            </div>
-        </div>
+    <div class="question">
+      <label class="q-label">Q8. What are the full names and addresses of both branches? <span class="required">*</span></label>
+      <div class="helper">E.g. "Branch 1: AFS Pradhan Nagar 01 — [full address] | Branch 2: AFS Pradhan Nagar 02 — [full address]"</div>
+      <textarea name="q8" required></textarea>
+    </div>
 
-        <button type="button" class="btn-submit" onclick="submitForm()">
-            SEND DATA TO SAUMMYA VIA WHATSAPP
-        </button>
-    </form>
+    <div class="question">
+      <label class="q-label">Q9. Are the trainers and programs the same at both branches? <span class="required">*</span></label>
+      <div class="options">
+        <label><input type="radio" name="q9" value="Same trainers, same programs at both" required> Same trainers, same programs at both</label>
+        <label><input type="radio" name="q9" value="Different trainers, but same programs"> Different trainers, but same programs</label>
+        <label><input type="radio" name="q9" value="Completely different at each branch"> Completely different at each branch</label>
+        <label><input type="radio" name="q9" value="Mostly same with small differences"> Mostly same with small differences</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q10. Contact number setup — how do you want it? <span class="required">*</span></label>
+      <div class="options">
+        <label><input type="radio" name="q10" value="One number for both branches" required> One number for both branches</label>
+        <label><input type="radio" name="q10" value="Separate number per branch"> Separate number per branch</label>
+        <label><input type="radio" name="q10" value="WhatsApp only"> WhatsApp only</label>
+        <label><input type="radio" name="q10" value="Both call and WhatsApp"> Both call and WhatsApp</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q11. Please share your contact number(s) <span class="required">*</span></label>
+      <div class="helper">Include WhatsApp numbers for both branches if separate</div>
+      <input type="text" name="q11" required>
+    </div>
+
+    <div class="section">Section 3: Website</div>
+
+    <div class="question">
+      <label class="q-label">Q12. Which services should appear on the website?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q12" value="Weight Training"> Weight Training</label>
+        <label><input type="checkbox" name="q12" value="Cardio Zone"> Cardio Zone</label>
+        <label><input type="checkbox" name="q12" value="Personal Training (1-on-1)"> Personal Training (1-on-1)</label>
+        <label><input type="checkbox" name="q12" value="Diet & Nutrition Plans"> Diet & Nutrition Plans</label>
+        <label><input type="checkbox" name="q12" value="Group Fitness Classes"> Group Fitness Classes</label>
+        <label><input type="checkbox" name="q12" value="Yoga / Zumba"> Yoga / Zumba</label>
+        <label><input type="checkbox" name="q12" value="CrossFit / Functional Fitness"> CrossFit / Functional Fitness</label>
+        <label><input type="checkbox" name="q12" value="Steam Bath / Sauna"> Steam Bath / Sauna</label>
+        <input type="text" class="other-input" name="q12_other" placeholder="Other (please specify)">
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q13. Should membership prices be shown on the website? <span class="required">*</span></label>
+      <div class="options">
+        <label><input type="radio" name="q13" value="Yes — show full pricing publicly" required> Yes — show full pricing publicly</label>
+        <label><input type="radio" name="q13" value="Show price range only"> Show price range only (e.g. ₹500–₹2000/month)</label>
+        <label><input type="radio" name="q13" value="No — keep it enquiry-based only"> No — keep it enquiry-based only</label>
+        <label><input type="radio" name="q13" value="Show plans but hide exact prices"> Show plans but hide exact prices</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q14. If showing prices, list your membership plans here</label>
+      <div class="helper">E.g. "Monthly ₹800 | Quarterly ₹2100 | Annual ₹7000 | Joining fee ₹500"</div>
+      <textarea name="q14"></textarea>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q15. What should the main CTA (call-to-action) button do?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q15" value="Open WhatsApp chat directly"> Open WhatsApp chat directly</label>
+        <label><input type="checkbox" name="q15" value="Show an enquiry form (name, phone, goal)"> Show an enquiry form (name, phone, goal)</label>
+        <label><input type="checkbox" name="q15" value="Allow booking a free gym visit"> Allow booking a free gym visit</label>
+        <label><input type="checkbox" name="q15" value="Show a call button"> Show a call button</label>
+        <label><input type="checkbox" name="q15" value="Show location on Google Maps"> Show location on Google Maps</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q16. Do you have photos or videos of the gym? <span class="required">*</span></label>
+      <div class="options">
+        <label><input type="radio" name="q16" value="Yes — high quality photos AND videos" required> Yes — high quality photos AND videos</label>
+        <label><input type="radio" name="q16" value="Yes — photos only (good quality)"> Yes — photos only (good quality)</label>
+        <label><input type="radio" name="q16" value="A few photos, not the best quality"> A few photos, not the best quality</label>
+        <label><input type="radio" name="q16" value="No — we need to do a photoshoot"> No — we need to do a photoshoot</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q17. What social proof do you have?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q17" value="Google reviews / star rating"> Google reviews / star rating</label>
+        <label><input type="checkbox" name="q17" value="Written member testimonials"> Written member testimonials</label>
+        <label><input type="checkbox" name="q17" value="Member transformation (before & after) photos"> Member transformation (before & after) photos</label>
+        <label><input type="checkbox" name="q17" value="Approximate member count"> Approximate member count (e.g. 500+ members)</label>
+        <label><input type="checkbox" name="q17" value="Years in business"> Years in business (e.g. Est. 2018)</label>
+        <label><input type="checkbox" name="q17" value="Trainer certifications / awards"> Trainer certifications / awards</label>
+        <label><input type="checkbox" name="q17" value="None yet"> None yet</label>
+      </div>
+    </div>
+
+    <div class="section">Section 4: Social Media</div>
+
+    <div class="question">
+      <label class="q-label">Q18. Where are you currently active on social media?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q18" value="Instagram"> Instagram</label>
+        <label><input type="checkbox" name="q18" value="Facebook"> Facebook</label>
+        <label><input type="checkbox" name="q18" value="YouTube"> YouTube</label>
+        <label><input type="checkbox" name="q18" value="WhatsApp Channel / Broadcast"> WhatsApp Channel / Broadcast</label>
+        <label><input type="checkbox" name="q18" value="Not active anywhere yet"> Not active anywhere yet</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q19. Share your social media handles</label>
+      <div class="helper">E.g. "@afs_gym | facebook.com/afsgym"</div>
+      <input type="text" name="q19">
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q20. What style of posts do you prefer?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q20" value="🖤 Dark & dramatic"> 🖤 Dark & dramatic (black background, intense)</label>
+        <label><input type="checkbox" name="q20" value="🤍 Clean & minimal white"> 🤍 Clean & minimal white</label>
+        <label><input type="checkbox" name="q20" value="💬 Bold motivational text quotes"> 💬 Bold motivational text quotes</label>
+        <label><input type="checkbox" name="q20" value="📸 Real member photos & gym shots"> 📸 Real member photos & gym shots</label>
+        <label><input type="checkbox" name="q20" value="🎬 Reels & video content focused"> 🎬 Reels & video content focused</label>
+        <label><input type="checkbox" name="q20" value="📊 Before & after transformation results"> 📊 Before & after transformation results</label>
+        <label><input type="checkbox" name="q20" value="📚 Educational tips & fitness facts"> 📚 Educational tips & fitness facts</label>
+        <label><input type="checkbox" name="q20" value="🎁 Offers, deals & promotions"> 🎁 Offers, deals & promotions</label>
+        <input type="text" class="other-input" name="q20_other" placeholder="Other (please specify)">
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q21. Any fitness/gym pages whose style you love? Share their @handle</label>
+      <div class="helper">Instagram or Facebook handles — we'll study their style for yours</div>
+      <input type="text" name="q21">
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q22. Any upcoming events, offers, or campaigns you want to promote?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q22" value="Free 1-day trial pass"> Free 1-day trial pass</label>
+        <label><input type="checkbox" name="q22" value="Free 3-day trial pass"> Free 3-day trial pass</label>
+        <label><input type="checkbox" name="q22" value="Discounted first month"> Discounted first month</label>
+        <label><input type="checkbox" name="q22" value="Zero joining fee for new members"> Zero joining fee for new members</label>
+        <label><input type="checkbox" name="q22" value="Free fitness assessment"> Free fitness assessment</label>
+        <label><input type="checkbox" name="q22" value="Fitness challenge event"> Fitness challenge event</label>
+        <label><input type="checkbox" name="q22" value="Festive / seasonal offer"> Festive / seasonal offer</label>
+        <label><input type="checkbox" name="q22" value="Nothing planned yet"> Nothing planned yet</label>
+        <input type="text" class="other-input" name="q22_other" placeholder="Other (please specify)">
+      </div>
+    </div>
+
+    <div class="section">Section 5: Meta Ads</div>
+
+    <div class="question">
+      <label class="q-label">Q23. What is your monthly Meta ads budget? (separate from my service fee) <span class="required">*</span></label>
+      <div class="helper">This is money you spend directly on Facebook/Instagram ads</div>
+      <div class="options">
+        <label><input type="radio" name="q23" value="Under ₹2,000/month" required> Under ₹2,000/month</label>
+        <label><input type="radio" name="q23" value="₹2,000 – ₹5,000/month"> ₹2,000 – ₹5,000/month</label>
+        <label><input type="radio" name="q23" value="₹5,000 – ₹10,000/month"> ₹5,000 – ₹10,000/month</label>
+        <label><input type="radio" name="q23" value="Above ₹10,000/month"> Above ₹10,000/month</label>
+        <label><input type="radio" name="q23" value="Not decided yet — need advice"> Not decided yet — need advice</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q24. What is the main goal of running Meta ads?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q24" value="Get new member leads (phone numbers/enquiries)"> Get new member leads (phone numbers/enquiries)</label>
+        <label><input type="checkbox" name="q24" value="Build brand awareness in Pradhan Nagar"> Build brand awareness in Pradhan Nagar</label>
+        <label><input type="checkbox" name="q24" value="Promote a specific offer or event"> Promote a specific offer or event</label>
+        <label><input type="checkbox" name="q24" value="Drive WhatsApp enquiries"> Drive WhatsApp enquiries</label>
+        <label><input type="checkbox" name="q24" value="Retarget people who visited the website"> Retarget people who visited the website</label>
+        <label><input type="checkbox" name="q24" value="All of the above"> All of the above</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q25. Is there an offer to hook people in the first ad?</label>
+      <div class="options">
+        <label><input type="checkbox" name="q25" value="Free 1-day trial pass"> Free 1-day trial pass</label>
+        <label><input type="checkbox" name="q25" value="Free 3-day trial pass"> Free 3-day trial pass</label>
+        <label><input type="checkbox" name="q25" value="Discounted joining fee"> Discounted joining fee</label>
+        <label><input type="checkbox" name="q25" value="Zero joining fee this month"> Zero joining fee this month</label>
+        <label><input type="checkbox" name="q25" value="Free fitness assessment session"> Free fitness assessment session</label>
+        <label><input type="checkbox" name="q25" value="No offer — just run awareness ads"> No offer — just run awareness ads</label>
+        <input type="text" class="other-input" name="q25_other" placeholder="Other (describe your offer)">
+      </div>
+    </div>
+
+    <div class="section">Section 6: Working Together</div>
+
+    <div class="question">
+      <label class="q-label">Q26. How do you want to approve posts before they go live? <span class="required">*</span></label>
+      <div class="options">
+        <label><input type="radio" name="q26" value="WhatsApp approval — you send, I reply" required> WhatsApp approval — you send, I reply</label>
+        <label><input type="radio" name="q26" value="Weekly batch — approve 5–7 posts at once"> Weekly batch — approve 5–7 posts at once</label>
+        <label><input type="radio" name="q26" value="Full trust — just post without asking"> Full trust — just post without asking</label>
+        <label><input type="radio" name="q26" value="Approve every single post individually"> Approve every single post individually</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label class="q-label">Q27. Anything else you want to share, ask, or tell us about AFS?</label>
+      <div class="helper">Your expectations, deadlines, concerns, special requests — anything goes here!</div>
+      <textarea name="q27"></textarea>
+    </div>
+
+    <button type="submit">📲 Send to WhatsApp</button>
+  </form>
+
+  <footer>Created by Saummya | Digital Marketing & Web Development</footer>
 </div>
 
 <script>
-    function submitForm() {
-        const form = document.getElementById('intakeForm');
-        
-        if (!form.checkValidity()) {
-            alert("Please fill in all required fields marked with *");
-            return;
-        }
+document.getElementById('afsForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
 
-        const formData = new FormData(form);
-        let message = "*AFS GYM INTAKE FORM*%0A%0A";
+  const questions = {
+    q1: "Q1. Gym Name",
+    q2: "Q2. Existing Logo",
+    q3: "Q3. Brand Vibe",
+    q4: "Q4. Target Member",
+    q5: "Q5. Brand Colors",
+    q6: "Q6. Colors to Avoid",
+    q7: "Q7. Competitor Gyms",
+    q8: "Q8. Branch Names & Addresses",
+    q9: "Q9. Trainers/Programs",
+    q10: "Q10. Contact Setup",
+    q11: "Q11. Contact Number(s)",
+    q12: "Q12. Website Services",
+    q13: "Q13. Show Prices?",
+    q14: "Q14. Membership Plans",
+    q15: "Q15. Main CTA",
+    q16: "Q16. Photos/Videos",
+    q17: "Q17. Social Proof",
+    q18: "Q18. Active On Social",
+    q19: "Q19. Social Handles",
+    q20: "Q20. Post Style",
+    q21: "Q21. Reference Pages",
+    q22: "Q22. Events/Offers",
+    q23: "Q23. Meta Ads Budget",
+    q24: "Q24. Ads Goal",
+    q25: "Q25. First Ad Offer",
+    q26: "Q26. Approval Style",
+    q27: "Q27. Anything Else"
+  };
 
-        // Logic to combine checkboxes and handle radios/text
-        const entries = {};
-        for (let [key, value] of formData.entries()) {
-            if (!entries[key]) {
-                entries[key] = [];
-            }
-            entries[key].push(value);
-        }
+  let message = "*AFS GYM — CLIENT INTAKE FORM* 💪%0A%0A";
 
-        for (let key in entries) {
-            let label = key.replace('q', 'Question ').replace('_', ' ').toUpperCase();
-            let value = entries[key].join(', ');
-            message += `*${label}:* %0A${value}%0A%0A`;
-        }
+  for (const key in questions) {
+    const values = data.getAll(key);
+    const other = data.get(key + '_other');
+    let answer = values.filter(v => v).join(', ');
+    if (other && other.trim()) answer += (answer ? ', ' : '') + 'Other: ' + other.trim();
+    if (!answer) answer = '—';
+    message += "*" + questions[key] + "*%0A" + encodeURIComponent(answer).replace(/%20/g, ' ') + "%0A%0A";
+  }
 
-        // SET YOUR PHONE NUMBER HERE
-        const phoneNumber = "91XXXXXXXXXX"; 
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-
-        window.open(whatsappUrl, '_blank');
-    }
+  const phone = "919475435509";
+  const url = "https://wa.me/" + phone + "?text=" + message;
+  window.open(url, '_blank');
+});
 </script>
-
 </body>
 </html>
