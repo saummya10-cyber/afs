@@ -6,104 +6,116 @@
     <title>AFS Gym — Client Intake Form</title>
     <style>
         :root {
-            --bg: #0f0f0f;
-            --card: #1a1a1a;
-            --accent: #007bff;
-            --text: #ffffff;
-            --muted: #a0a0a0;
+            --primary: #2563eb;
+            --bg: #ffffff;
+            --text: #1f2937;
+            --border: #e5e7eb;
+            --section-bg: #f9fafb;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #f3f4f6;
             color: var(--text);
+            line-height: 1.6;
             margin: 0;
             padding: 20px;
-            display: flex;
-            justify-content: center;
         }
 
         .container {
-            max-width: 700px;
-            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         header {
             text-align: center;
-            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        header h1 { color: var(--accent); margin-bottom: 5px; }
-        header p { color: var(--muted); }
+        h1 { margin: 0; color: #111; font-size: 24px; }
+        .description { color: #6b7280; font-size: 14px; margin-top: 10px; }
 
         .section {
-            background: var(--card);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border-left: 4px solid var(--accent);
+            margin-bottom: 40px;
+            padding: 20px;
+            background: var(--section-bg);
+            border-radius: 8px;
         }
 
         .section-title {
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
             margin-bottom: 20px;
             display: block;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
         }
 
-        .form-group { margin-bottom: 20px; }
+        .question { margin-bottom: 25px; }
         
-        label { display: block; margin-bottom: 8px; font-weight: 500; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; }
         
-        .helper { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; display: block; }
+        .helper { font-size: 12px; color: #6b7280; margin-bottom: 10px; font-style: italic; }
 
         input[type="text"], textarea, select {
             width: 100%;
             padding: 12px;
+            border: 1px solid var(--border);
             border-radius: 6px;
-            border: 1px solid #333;
-            background: #252525;
-            color: white;
+            font-size: 14px;
             box-sizing: border-box;
         }
 
-        .checkbox-group, .radio-group {
+        .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
+            margin-top: 10px;
         }
 
-        .checkbox-item {
+        .option-item {
+            background: white;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
             display: flex;
             align-items: center;
-            font-size: 0.9rem;
-            background: #252525;
-            padding: 10px;
-            border-radius: 6px;
             cursor: pointer;
+            font-size: 14px;
         }
 
-        .checkbox-item input { margin-right: 10px; }
+        .option-item input { margin-right: 10px; }
 
-        button {
+        .btn-submit {
             width: 100%;
-            padding: 15px;
-            background: var(--accent);
+            padding: 18px;
+            background: #25d366;
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: 16px;
+            font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
-        button:hover { background: #0056b3; transform: translateY(-2px); }
+        .btn-submit:hover { background: #128c7e; transform: translateY(-2px); }
 
         @media (max-width: 600px) {
-            .checkbox-group { grid-template-columns: 1fr; }
+            .options-grid { grid-template-columns: 1fr; }
+            .container { padding: 20px; }
         }
     </style>
 </head>
@@ -111,124 +123,210 @@
 
 <div class="container">
     <header>
-        <h1>AFS Gym Brand Intake</h1>
-        <p>Let's build something legendary together. 💪</p>
+        <h1>AFS Gym — Tell Us About Your Brand 💪</h1>
+        <p class="description">Hey! Before we build your website, ads, and social media — fill this out so we can make everything perfectly YOU. Takes 5–7 minutes.</p>
     </header>
 
     <form id="intakeForm">
         <!-- SECTION 1 -->
         <div class="section">
-            <span class="section-title">1. Brand & Identity</span>
+            <span class="section-title">SECTION 1: BRAND & IDENTITY</span>
             
-            <div class="form-group">
-                <label>Official Gym Name *</label>
-                <input type="text" name="gym_name" required placeholder="e.g. AFS Fitness Pradhan Nagar">
+            <div class="question">
+                <label>Q1. What is the full official name of your gym? *</label>
+                <span class="helper">This goes on your website, ads, and all creatives — exact spelling matters!</span>
+                <input type="text" name="q1_gym_name" required>
             </div>
 
-            <div class="form-group">
-                <label>Do you have a logo?</label>
-                <select name="logo_status">
-                    <option value="Has Logo">Yes, I have proper files</option>
-                    <option value="Needs Improvement">Yes, but needs improvement</option>
-                    <option value="Only on Banners">Only on old banners</option>
-                    <option value="No Logo">No logo at all</option>
-                </select>
+            <div class="question">
+                <label>Q2. Do you have an existing logo? *</label>
+                <div class="options-grid">
+                    <label class="option-item"><input type="radio" name="q2_logo" value="Yes, proper file" required> Yes, I have a proper logo file</label>
+                    <label class="option-item"><input type="radio" name="q2_logo" value="Needs improvement"> Yes, but it needs improvement</label>
+                    <label class="option-item"><input type="radio" name="q2_logo" value="Old banners only"> Only on old banners or boards</label>
+                    <label class="option-item"><input type="radio" name="q2_logo" value="No logo"> No logo at all</label>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Brand Vibe (Select all that apply)</label>
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" name="vibe" value="Hardcore"> 💪 Hardcore</label>
-                    <label class="checkbox-item"><input type="checkbox" name="vibe" value="Premium"> 👑 Premium</label>
-                    <label class="checkbox-item"><input type="checkbox" name="vibe" value="Community"> 🤝 Friendly</label>
-                    <label class="checkbox-item"><input type="checkbox" name="vibe" value="Energetic"> ⚡ Energetic</label>
+            <div class="question">
+                <label>Q3. What vibe do you want for the gym's brand? (Select all)</label>
+                <div class="options-grid">
+                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Hardcore"> 💪 Hardcore & Intense</label>
+                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Premium"> 👑 Premium & Luxurious</label>
+                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Friendly"> 🤝 Friendly & Community</label>
+                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Motivational"> 🔥 Motivational & Bold</label>
+                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Professional"> 💼 Professional & Clinical</label>
+                    <label class="option-item"><input type="checkbox" name="q3_vibe" value="Energetic"> ⚡ Energetic & Youthful</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>Q4. Who is your target member?</label>
+                <div class="options-grid">
+                    <label class="option-item"><input type="checkbox" name="q4_target" value="Students"> Students (18–22)</label>
+                    <label class="option-item"><input type="checkbox" name="q4_target" value="Professionals"> Working professionals (25–40)</label>
+                    <label class="option-item"><input type="checkbox" name="q4_target" value="Bodybuilders"> Bodybuilders & serious athletes</label>
+                    <label class="option-item"><input type="checkbox" name="q4_target" value="Homemakers"> Homemakers & women fitness</label>
+                    <label class="option-item"><input type="checkbox" name="q4_target" value="Senior Citizens"> Senior citizens (50+)</label>
+                    <label class="option-item"><input type="checkbox" name="q4_target" value="Teenagers"> Teenagers (15–18)</label>
+                    <label class="option-item"><input type="checkbox" name="q4_target" value="Everyone"> Everyone welcome</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>Q5. Which colors do you love or already use for AFS?</label>
+                <span class="helper">Pick colors that feel RIGHT for your brand</span>
+                <div class="options-grid">
+                    <label class="option-item"><input type="checkbox" name="q5_colors" value="Black"> ⬛ Jet Black</label>
+                    <label class="option-item"><input type="checkbox" name="q5_colors" value="Gray"> 🩶 Charcoal Gray</label>
+                    <label class="option-item"><input type="checkbox" name="q5_colors" value="White"> 🤍 Clean White</label>
+                    <label class="option-item"><input type="checkbox" name="q5_colors" value="Yellow"> 🟡 Gold / Yellow</label>
+                    <label class="option-item"><input type="checkbox" name="q5_colors" value="Royal Blue"> 🔵 Royal Blue</label>
+                    <label class="option-item"><input type="checkbox" name="q5_colors" value="Crimson Red"> 🔴 Crimson Red</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <label>Q6. Any colors you absolutely DO NOT want?</label>
+                <input type="text" name="q6_no_colors" placeholder="e.g. No pink, no pastels">
+            </div>
+
+            <div class="question">
+                <label>Q7. Which competitor gyms do you want to look better than?</label>
+                <div class="options-grid">
+                    <label class="option-item"><input type="checkbox" name="q7_compete" value="Vikings"> Vikings Fitness</label>
+                    <label class="option-item"><input type="checkbox" name="q7_compete" value="Sandy's"> Sandy's Fitness</label>
+                    <label class="option-item"><input type="checkbox" name="q7_compete" value="Fitness Forge"> Fitness Forge</label>
+                    <label class="option-item"><input type="checkbox" name="q7_compete" value="All Local"> All local gyms in Pradhan Nagar</label>
                 </div>
             </div>
         </div>
 
         <!-- SECTION 2 -->
         <div class="section">
-            <span class="section-title">2. Locations & Contact</span>
-            <div class="form-group">
-                <label>Branch Addresses *</label>
-                <textarea name="addresses" rows="3" required placeholder="Branch 1 address... Branch 2 address..."></textarea>
+            <span class="section-title">SECTION 2: TWO BRANCHES</span>
+            <div class="question">
+                <label>Q8. What are the full names and addresses of both branches? *</label>
+                <textarea name="q8_addresses" rows="3" required placeholder="Branch 1: [Address] | Branch 2: [Address]"></textarea>
             </div>
-            <div class="form-group">
-                <label>Contact Number for Ads</label>
-                <input type="text" name="contact_num" placeholder="e.g. +91 98765-43210">
+            <div class="question">
+                <label>Q9. Are the trainers/programs the same at both branches? *</label>
+                <select name="q9_consistency" required>
+                    <option value="">-- Select Option --</option>
+                    <option value="Same trainers and programs">Same trainers, same programs at both</option>
+                    <option value="Different trainers, same programs">Different trainers, but same programs</option>
+                    <option value="Completely different">Completely different at each branch</option>
+                </select>
+            </div>
+            <div class="question">
+                <label>Q11. Please share your contact number(s) *</label>
+                <input type="text" name="q11_contact" required>
             </div>
         </div>
 
         <!-- SECTION 3 -->
         <div class="section">
-            <span class="section-title">3. Services & Pricing</span>
-            <div class="form-group">
-                <label>What do you offer?</label>
-                <div class="checkbox-group">
-                    <label class="checkbox-item"><input type="checkbox" name="services" value="Weight Training"> Weight Training</label>
-                    <label class="checkbox-item"><input type="checkbox" name="services" value="PT"> Personal Training</label>
-                    <label class="checkbox-item"><input type="checkbox" name="services" value="Yoga/Zumba"> Yoga / Zumba</label>
-                    <label class="checkbox-item"><input type="checkbox" name="services" value="Steam"> Steam/Sauna</label>
+            <span class="section-title">SECTION 3: WEBSITE</span>
+            <div class="question">
+                <label>Q12. Which services should appear on the website?</label>
+                <div class="options-grid">
+                    <label class="option-item"><input type="checkbox" name="q12_services" value="Weight Training"> Weight Training</label>
+                    <label class="option-item"><input type="checkbox" name="q12_services" value="Cardio"> Cardio Zone</label>
+                    <label class="option-item"><input type="checkbox" name="q12_services" value="PT"> Personal Training</label>
+                    <label class="option-item"><input type="checkbox" name="q12_services" value="Steam"> Steam Bath / Sauna</label>
                 </div>
             </div>
-            <div class="form-group">
-                <label>Show prices on website?</label>
-                <select name="show_price">
-                    <option value="Yes">Yes - Full Pricing</option>
-                    <option value="Range">Show Range Only</option>
-                    <option value="No">No - Enquiry Based</option>
+            <div class="question">
+                <label>Q13. Should membership prices be shown? *</label>
+                <select name="q13_prices" required>
+                    <option value="Show Publicly">Yes — show full pricing publicly</option>
+                    <option value="Range Only">Show price range only</option>
+                    <option value="No">No — keep it enquiry-based only</option>
+                </select>
+            </div>
+            <div class="question">
+                <label>Q16. Do you have photos or videos of the gym? *</label>
+                <select name="q16_media" required>
+                    <option value="Full Media">Yes — High quality photos & videos</option>
+                    <option value="Photos Only">Yes — Photos only</option>
+                    <option value="Need Shoot">No — We need a photoshoot</option>
                 </select>
             </div>
         </div>
 
-        <!-- SECTION 4 -->
+        <!-- SECTION 5 -->
         <div class="section">
-            <span class="section-title">4. Ads & Marketing</span>
-            <div class="form-group">
-                <label>Monthly Ads Budget</label>
-                <select name="budget">
-                    <option value="Under 2k">Under ₹2,000</option>
-                    <option value="2k-5k">₹2,000 - ₹5,000</option>
-                    <option value="5k-10k">₹5,000 - ₹10,000</option>
-                    <option value="10k+">Above ₹10,000</option>
+            <span class="section-title">SECTION 5: META ADS</span>
+            <div class="question">
+                <label>Q23. Monthly Meta ads budget? *</label>
+                <select name="q23_budget" required>
+                    <option value="Under 2k">Under ₹2,000/month</option>
+                    <option value="2k-5k">₹2,000 – ₹5,000/month</option>
+                    <option value="5k-10k">₹5,000 – ₹10,000/month</option>
+                    <option value="10k+">Above ₹10,000/month</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label>Main Ad Goal</label>
-                <input type="text" name="ad_goal" placeholder="e.g. Get more leads, brand awareness">
+            <div class="question">
+                <label>Q24. Main goal of running Meta ads?</label>
+                <input type="text" name="q24_ads_goal" placeholder="e.g. Leads, Brand Awareness">
             </div>
         </div>
 
-        <button type="button" onclick="sendToWhatsApp()">SUBMIT VIA WHATSAPP</button>
+        <!-- SECTION 6 -->
+        <div class="section">
+            <span class="section-title">SECTION 6: WORKING TOGETHER</span>
+            <div class="question">
+                <label>Q26. How do you want to approve posts? *</label>
+                <select name="q26_approval" required>
+                    <option value="WhatsApp">WhatsApp approval per post</option>
+                    <option value="Weekly">Weekly batch approval</option>
+                    <option value="Full Trust">Full trust - just post</option>
+                </select>
+            </div>
+            <div class="question">
+                <label>Q27. Anything else for Saummya? (Optional)</label>
+                <textarea name="q27_notes" rows="3"></textarea>
+            </div>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="submitForm()">
+            SEND DATA TO SAUMMYA VIA WHATSAPP
+        </button>
     </form>
 </div>
 
 <script>
-    function sendToWhatsApp() {
+    function submitForm() {
         const form = document.getElementById('intakeForm');
+        
+        if (!form.checkValidity()) {
+            alert("Please fill in all required fields marked with *");
+            return;
+        }
+
         const formData = new FormData(form);
-        
         let message = "*AFS GYM INTAKE FORM*%0A%0A";
-        
-        // Loop through text/select fields
-        formData.forEach((value, key) => {
-            // This part handles checkboxes specifically to group them
-            if (key === "vibe" || key === "services") return; 
-            message += `*${key.replace('_', ' ').toUpperCase()}:* ${value}%0A`;
-        });
 
-        // Grouping Checkboxes
-        const vibes = Array.from(document.querySelectorAll('input[name="vibe"]:checked')).map(el => el.value);
-        const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(el => el.value);
+        // Logic to combine checkboxes and handle radios/text
+        const entries = {};
+        for (let [key, value] of formData.entries()) {
+            if (!entries[key]) {
+                entries[key] = [];
+            }
+            entries[key].push(value);
+        }
 
-        if(vibes.length > 0) message += `%0A*VIBE:* ${vibes.join(', ')}`;
-        if(services.length > 0) message += `%0A*SERVICES:* ${services.join(', ')}`;
+        for (let key in entries) {
+            let label = key.replace('q', 'Question ').replace('_', ' ').toUpperCase();
+            let value = entries[key].join(', ');
+            message += `*${label}:* %0A${value}%0A%0A`;
+        }
 
-        // Replace with your number
-        const phone = "919475435509"; 
-        const url = `https://wa.me/${phone}?text=${message}`;
-        
-        window.open(url, '_blank').focus();
+        // SET YOUR PHONE NUMBER HERE
+        const phoneNumber = "91XXXXXXXXXX"; 
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+        window.open(whatsappUrl, '_blank');
     }
 </script>
 
